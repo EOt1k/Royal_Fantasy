@@ -1,0 +1,13 @@
+conversations:
+  Tafi:
+    quester: Тафи
+    NPC_options:
+      node_1:
+        text: "Здравствуй, тебе что-то нужно? "
+        pointers: node_2, node_3
+    first: node_1
+    player_options:
+      node_2:
+        text: Да, давай поторгуем
+      node_3:
+        text: Нет, я просто прохожу мимо
