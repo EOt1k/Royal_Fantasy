@@ -1,2 +1,3 @@
 events:
   test: notify TEST %player%
+  iti: notify iti
