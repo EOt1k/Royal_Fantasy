@@ -1,1 +1,2 @@
 events:
+  test: notify TEST %player%
