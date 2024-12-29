@@ -8,7 +8,7 @@ mysql:
   base: ''
   prefix: betonquest_
   reconnect_interval: 1000
-language: en
+language: ru
 update:
   enabled: false
   strategy: MINOR
