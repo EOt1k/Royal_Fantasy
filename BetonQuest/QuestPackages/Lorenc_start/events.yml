@@ -1,3 +1,5 @@
 events:
   test: notify TEST %player%
   iti: notify iti
+
+  tag_lorence0: tag add lorence0
