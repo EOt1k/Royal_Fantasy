@@ -1,0 +1,53 @@
+conversations:
+  Brom:
+    quester: Бром
+    NPC_options:
+      node_1:
+        text: "Привет, хочешь купить припасов или арендовать комнату? "
+        pointers: node_2, node_3, node_4
+        conditions: "!tag_lorence1"
+      node_5:
+        text: Прости друг, все комнаты заняты
+        pointers: node_6
+      node_7:
+        text: Что-то еще?
+        pointers: node_2, node_3, node_4
+      node_8:
+        conditions: tag_lorence1, !tag_lorence1_1
+        text: Ооо что за новые лица в моей замечательной таверне, что тебя сюда привело путник?
+        pointers: node_9
+      node_10:
+        text: Старина Лоренс значит, хорошо хорошо. Вот твой тущеный кролик, угощайся. Передай Лоренсу что все прошло успешно
+        pointers: node_11
+        events: krolik
+      node_12:
+        text: Обязательно приходи еще
+        events: tag_lorence1_1
+      node_13:
+        conditions: tag_lorence1_1
+        text: Ты уже сходил к Лоренсу?
+        pointers: node_14
+      node_15:
+        text: Так беги к нему, он наверное ждет тебя
+    first: node_1, node_8, node_13
+    player_options:
+      node_2:
+        text: Хочу купить припасов
+        events: buybrom
+      node_3:
+        text: Хочу арендовать комнату
+        pointers: node_5
+      node_4:
+        text: Я просто прохожу мимо
+      node_6:
+        text: Печально
+        pointers: node_7
+      node_9:
+        text: Лоренс сказал прийти к тебе, и чтобы ты накормил меня супом
+        pointers: node_10
+      node_11:
+        text: Спасибо
+        pointers: node_12
+      node_14:
+        text: Нет
+        pointers: node_15

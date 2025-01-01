@@ -26,8 +26,26 @@ conversations:
         pointers: node_9, node_15, node_10
       node_16:
         text: Привествую тебя %player%, ты что-то хотел?
-        pointers: node_4, node_5, node_6
+        pointers: node_21,node_4, node_5, node_6
         conditions: tag_lorence0
+      node_17:
+        text: Ты новичок в этих землях и без денег. Зайди в таверну Брома — она находится прямо по дороге. Скажи, что ты от Лоренса и впервые здесь. Бром накормит тебя супом. После возвращайся ко мне за дальнейшими указаниями.
+        pointers: node_18
+        events: tag_lorence1
+        conditions: "!tag_lorence1, !tag_lorence2"
+      node_19:
+        text: У тебя уже есть задание, пойти в таверну Брома, которая находится прямо, как сходишь, возвращайся ко мне
+        conditions: tag_lorence1
+        pointers: node_20
+      node_22:
+        text: Отлично, ты сделал свой первый шаг в изучении этого мира. Ты готов приступить к следующему заданию?
+        pointers: node_23, node_24
+        events: tag_del_lorence, tag_lorence2
+      node_25:
+        text: Хорошо, как захочешь продолжить,ты знаешь где меня найти
+      node_26:
+        text: "Отлично! Тебе нужно выйти за городскую стену, найти пшеничные поля и поговорить с Элриком. Он даст тебе работу: собери 64 пшеницы и продай их ему. Затем отправляйся в Шахту к Далгриму, добудь 10 камня и продай ему. Когда закончишь, возвращайся."
+        conditions: tag_lorence2
     first: node_1, node_16
     player_options:
       node_2:
@@ -38,6 +56,8 @@ conversations:
         pointers: node_8
       node_5:
         text: "Хочу получить задание. "
+        pointers: node_17, node_19
+        conditions: "!tag_lorence1_1"
       node_6:
         text: Сейчас не лучшее время. Для начала я хочу осмотреться.
         pointers: node_7
@@ -53,3 +73,17 @@ conversations:
       node_15:
         text: Хорошо, спасибо за информацию
         pointers: node_3
+      node_18:
+        text: Хорошо, я скоро вернусь
+      node_20:
+        text: Хорошо, я тебя понял
+      node_21:
+        text: Я сходил к Брому, он просил передать что все прошло успешно
+        conditions: tag_lorence1_1
+        pointers: node_22
+      node_23:
+        text: Да
+        pointers: node_26
+      node_24:
+        text: Нет, я хочу передохнуть
+        pointers: node_25
