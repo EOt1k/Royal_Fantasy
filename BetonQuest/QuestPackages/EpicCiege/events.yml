@@ -1,0 +1,776 @@
+events:
+  test23: "command papi parse %player% %ph.javascript_example_set,{player_name},111,145,123%"
+  test32: "command papi parse %player% %ph.javascript_example_reset,{player_name}%"
+
+  con2: conversation СК
+
+  test1: folder test23,test3 period:5
+  test3: folder test32,tt
+  tt: objective add test
+  #####ОСАДА###### %globalpoint.wall.amount%  /papi parse me %betonquest_tutorialQuest:globalpoint.BLUE_KING.amount%
+
+  ###MAGE###
+  party: party 3 red_team ef
+  eff: folder eff1,regen
+  eff1: command execute at %player% run particle minecraft:effect %globalpoint.cord_x.amount% %globalpoint.cord_y.amount% %globalpoint.cord_z.amount% 2 0 2 0.01 500 force
+  ef: folder sv,h_zone,eff,eff,eff,eff,eff,staf,h_zone2 period:10 ticks
+
+  savecoord: runForAll where:red_team events:savecoord1
+  savecoord1: folder p_x1,p_y1,p_z1
+  p_x1: variable coord1 x %location.x%
+  p_y1: variable coord1 y %location.y%
+  p_z1: variable coord1 z %location.z%
+  regen: runForAll where:red_team,heal_zone events:regen1
+  regen1: effect REGENERATION 5 2 conditions:heal_zone,!effect
+  staf: objective add staff
+  heal_zone_obj: objective add heal_zone
+  heal_zone_obj2: objective delete heal_zone
+  h_zone: runForAll where:red_team events:heal_zone_obj
+  h_zone2: runForAll where:red_team events:heal_zone_obj2
+
+  sv: folder sv1,sv2,sv3
+  sv1: globalpoint cord_x %location.x% action:set
+  sv2: globalpoint cord_y %location.y% action:set
+  sv3: globalpoint cord_z %location.z% action:set
+  ##########
+
+  ##########DEATH####
+  p_death: point DEATH 1 action:add
+  p_death0: point DEATH 0 action:set
+
+  d_obj: folder d1_obj,d2_obj,d3_obj
+  d1_obj_loc: objective add d1_loc
+  d1_obj: objective add d1 conditions:p_death1
+
+  d2_obj_loc: objective add d2_loc
+  d2_obj: objective add d2 conditions:p_death2
+
+  d3_obj_loc: objective add d3_loc
+  d3_obj: objective add d3 conditions:p_death3
+  ##################
+
+  ###TIMER
+  timer: notify Таймер io:bossbar barColor:yellow stay:20 progress:%math.calc:({globalpoint.timer.amount}/1000)%
+  timer_set: globalpoint TIMER 900 action:set
+  timer_min: globalpoint TIMER -1 action:add
+  timer_obj: objective add timer conditions:!time_end
+  tim: "folder timer_min,time period:20 ticks conditions:!time_end"
+  time: folder timer,timer_obj,noty
+  noty: notify POINT %globalpoint.timer.amount%
+  #########
+
+  test: notify TEST 
+  lead1: folder lead1_1,lead1_2 period:3
+  le: notify Вы начинаете поднимать лестницу.....
+  lead1_1: folder le,lead1_1_1
+  lead1_1_1: paste -206;73;5;world lead.schem conditions:!lead1,!lead2
+  lead1_2: paste -206;75;5;world lead.schem conditions:!lead3,!lead4
+  break: folder break1,setblock 
+  break1: notify Вы сломали забор
+  hp: "notify Прочность забора %globalpoint.wall.amount% io:actionbar barColor:yellow stay:5 progress:%math.calc:({globalpoint.wall.amount}/200*100)%"
+  hp_gp1: globalpoint wall 400 action:set
+  hp_gp2: globalpoint wall -1 action:add
+  br: objective add break1
+  lc: objective add loc
+  setblock: folder setblock_paste,setblock_delete delay:5 ticks 
+  setblock_paste: folder setblock1,setblock2,setblock3,setblock4,setblock5,setblock6,setblock7,setblock8,setblock9,setblock10
+  setblock1: folder setblock1_1,setblock1_2,setblock1_3,setblock1_4,setblock1_5
+  setblock1_1: setblock OAK_FENCE 14;121;-186;world conditions:!check1_1
+  setblock1_2: setblock OAK_FENCE 14;122;-186;world conditions:!check1_2
+  setblock1_3: setblock OAK_FENCE 14;123;-186;world conditions:!check1_3
+  setblock1_4: setblock OAK_FENCE 14;124;-186;world conditions:!check1_4
+  setblock1_5: setblock OAK_FENCE 14;125;-186;world conditions:!check1_5
+
+  setblock2: folder setblock2_1,setblock2_2,setblock2_3,setblock2_4,setblock2_5
+  setblock2_1: setblock OAK_FENCE 14;121;-187;world conditions:!check2_1
+  setblock2_2: setblock OAK_FENCE 14;122;-187;world conditions:!check2_2
+  setblock2_3: setblock OAK_FENCE 14;123;-187;world conditions:!check2_3
+  setblock2_4: setblock OAK_FENCE 14;124;-187;world conditions:!check2_4
+  setblock2_5: setblock OAK_FENCE 14;125;-187;world conditions:!check2_5
+
+  setblock3: folder setblock3_1,setblock3_2,setblock3_3,setblock3_4,setblock3_5
+  setblock3_1: setblock OAK_FENCE 14;121;-188;world conditions:!check3_1
+  setblock3_2: setblock OAK_FENCE 14;122;-188;world conditions:!check3_2
+  setblock3_3: setblock OAK_FENCE 14;123;-188;world conditions:!check3_3
+  setblock3_4: setblock OAK_FENCE 14;124;-188;world conditions:!check3_4
+  setblock3_5: setblock OAK_FENCE 14;125;-188;world conditions:!check3_5
+
+  setblock4: folder setblock4_1,setblock4_2,setblock4_3,setblock4_4,setblock4_5
+  setblock4_1: setblock OAK_FENCE 14;121;-189;world conditions:!check4_1
+  setblock4_2: setblock OAK_FENCE 14;122;-189;world conditions:!check4_2
+  setblock4_3: setblock OAK_FENCE 14;123;-189;world conditions:!check4_3
+  setblock4_4: setblock OAK_FENCE 14;124;-189;world conditions:!check4_4
+  setblock4_5: setblock OAK_FENCE 14;125;-189;world conditions:!check4_5
+  
+  setblock5: folder setblock5_1,setblock5_2,setblock5_3,setblock5_4,setblock5_5
+  setblock5_1: setblock OAK_FENCE 14;121;-190;world conditions:!check5_1
+  setblock5_2: setblock OAK_FENCE 14;122;-190;world conditions:!check5_2
+  setblock5_3: setblock OAK_FENCE 14;123;-190;world conditions:!check5_3
+  setblock5_4: setblock OAK_FENCE 14;124;-190;world conditions:!check5_4
+  setblock5_5: setblock OAK_FENCE 14;125;-190;world conditions:!check5_5
+
+  setblock6: folder setblock6_1,setblock6_2,setblock6_3,setblock6_4,setblock6_5
+  setblock6_1: setblock OAK_FENCE 14;121;-191;world conditions:!check6_1
+  setblock6_2: setblock OAK_FENCE 14;122;-191;world conditions:!check6_2
+  setblock6_3: setblock OAK_FENCE 14;123;-191;world conditions:!check6_3
+  setblock6_4: setblock OAK_FENCE 14;124;-191;world conditions:!check6_4
+  setblock6_5: setblock OAK_FENCE 14;125;-191;world conditions:!check6_5
+  
+  setblock7: folder setblock7_1,setblock7_2,setblock7_3,setblock7_4,setblock7_5
+  setblock7_1: setblock OAK_FENCE 14;121;-192;world conditions:!check7_1
+  setblock7_2: setblock OAK_FENCE 14;122;-192;world conditions:!check7_2
+  setblock7_3: setblock OAK_FENCE 14;123;-192;world conditions:!check7_3
+  setblock7_4: setblock OAK_FENCE 14;124;-192;world conditions:!check7_4
+  setblock7_5: setblock OAK_FENCE 14;125;-192;world conditions:!check7_5
+
+  setblock8: folder setblock8_1,setblock8_2,setblock8_3,setblock8_4,setblock8_5
+  setblock8_1: setblock OAK_FENCE 14;121;-193;world conditions:!check8_1
+  setblock8_2: setblock OAK_FENCE 14;122;-193;world conditions:!check8_2
+  setblock8_3: setblock OAK_FENCE 14;123;-193;world conditions:!check8_3
+  setblock8_4: setblock OAK_FENCE 14;124;-193;world conditions:!check8_4
+  setblock8_5: setblock OAK_FENCE 14;125;-193;world conditions:!check8_5
+
+  setblock9: folder setblock9_1,setblock9_2,setblock9_3,setblock9_4,setblock9_5
+  setblock9_1: setblock OAK_FENCE 14;121;-194;world conditions:!check9_1
+  setblock9_2: setblock OAK_FENCE 14;122;-194;world conditions:!check9_2
+  setblock9_3: setblock OAK_FENCE 14;123;-194;world conditions:!check9_3
+  setblock9_4: setblock OAK_FENCE 14;124;-194;world conditions:!check9_4
+  setblock9_5: setblock OAK_FENCE 14;125;-194;world conditions:!check9_5
+
+  setblock10: folder setblock10_1,setblock10_2,setblock10_3,setblock10_4,setblock10_5
+  setblock10_1: setblock OAK_FENCE 14;121;-195;world conditions:!check10_1
+  setblock10_2: setblock OAK_FENCE 14;122;-195;world conditions:!check10_2
+  setblock10_3: setblock OAK_FENCE 14;123;-195;world conditions:!check10_3
+  setblock10_4: setblock OAK_FENCE 14;124;-195;world conditions:!check10_4
+  setblock10_5: setblock OAK_FENCE 14;125;-195;world conditions:!check10_5
+  
+  ifFlag: folder ifFlag1,ifFlag2,ifFlag3,ifFlag4,ifFlag5,ifFlag6,ifFlag7 period:1
+  ifFlag1: if flag flag1_not else flag_else
+  ifFlag2: if flag flag2_not else flag_else
+  ifFlag3: if flag flag3_not else flag_else
+  ifFlag4: if flag flag4_not else flag_else
+  ifFlag5: if flag flag5_not else flag_else
+  ifFlag6: if flag flag6_not else flag_else
+  ifFlag7: if flag flag7 else flag_else
+  flag1_not: notify Вы начинаете захват флага, пожалуйста стойте рядом с флагом в течении 5 секунд io:actionbar
+  flag2_not: notify &lВы захватываете флаг [&a|&c||||&f] io:actionbar
+  flag3_not: notify &lВы захватываете флаг [&a||&c|||&f] io:actionbar
+  flag4_not: notify &lВы захватываете флаг [&a|||&c||&f] io:actionbar
+  flag5_not: notify &lВы захватываете флаг [&a||||&c|&f] io:actionbar
+  flag6_not: notify &lВы захватываете флаг [&a|||||&f] io:actionbar
+  flag7_not: notify &c&lФлаг захвачен io:title 
+  flag7: folder del_flag,flag_give,flag7_not,flag_ef
+  del_flag: setblock AIR -222;73;21;world
+  flag_give: give flag:1
+  flag_ef: effect GLOWING 5 1 hidden noicon
+  flag_else: folder flag_else_1,flag_else_obj
+  flag_else_1: notify Вы прекратили захват флага io:actionbar
+  flag_else_obj: objective add flag
+
+  flag_paste: setblock BLUE_BANNER -222;73;21;world
+  flag_ret_not: notifyall &9&lФлаг возвращен io:title
+  flag_ret_obj: objective add flag_return
+  flag_take: take flag
+  setblock_delete: folder setblockdel1_1,setblockdel1_2,setblockdel1_3
+  setblockdel1_1: setblock AIR 14;122;-189;world conditions:stage1
+  setblockdel1_2: setblock AIR 14;122;-190;world conditions:stage2
+  setblockdel1_3: setblock AIR 14;122;-191;world conditions:stage3
+
+  tp: teleport -238;73;-76;world
+  tp1: teleport -214;72;-106;world 
+  red_lobby: teleport -112;74;-169;world
+  blue_lobby: teleport -210;72;-164;world
+  start: folder red_start,blue_start
+  red_start: teleport -199;77;-12;world conditions:red_tag
+  blue_start: teleport -221;76;12;world conditions:blue_tag
+
+  red_obj: objective add red_npc
+  blue_obj: objective add blue_npc
+  first: objective add first
+  
+  del_red_obj: objective delete red_npc
+  del_blue_obj: objective delete blue_npc
+
+  team: folder red_obj,blue_obj
+
+  blue_team: folder blue_team1,blue_team2
+  blue_team1: tag add blue_team
+  blue_team2: command team join blue %player%
+
+  red_team: folder red_team1,red_team2
+  red_team1: tag add red_team
+  red_team2: command team join red %player%
+  del_red_team: tag del red_team
+  del_blue_team: tag del blue_team
+
+
+  tu: folder tu1,tu2,tu3,tu4,tu5,tu6,tu7,tu8
+  tu1: globalpoint BLUE_KING 0 action:set 
+  tu2: globalpoint BLUE_GUARDIAN -1 action:add conditions:blue_guardian_tag
+  tu3: globalpoint BLUE_CAPTAN -1 action:add conditions:blue_captan_tag
+  tu4: globalpoint BLUE_ARCHER -1 action:add conditions:blue_archer_tag
+  tu5: globalpoint BLUE_WARRIOR -1 action:add conditions:blue_warrior_tag
+  tu6: globalpoint BLUE_TANK -1 action:add conditions:blue_tank_tag
+  tu7: globalpoint BLUE_WORK -1 action:add conditions:blue_work_tag
+  tu8: globalpoint BLUE_MAGE -1 action:add conditions:blue_mage_tag
+  
+  obj_trash: objective add blue_trash
+  trash1: if blue_tag trash1_1 else trash1_c
+
+  obj_blue: folder obj_blue_king,obj_blue_guardian,obj_blue_captan,obj_blue_archer,obj_blue_warrior,obj_blue_tank,obj_blue_work,obj_blue_mage
+
+  trash1_1: folder clear,tu,trash1_12,del_blue_team,obj_blue,trash1_13,trash1_12_5,trash1_12_6,trash1_12_7,trash1_12_8
+  trash1_12: folder trash1_12_1,trash1_12_2,trash1_12_3,trash1_12_4
+  trash1_12_1: tag del BLUE_KING conditions:blue_king_tag
+  trash1_12_2: tag del BLUE_GUARDIAN conditions:blue_guardian_tag
+  trash1_12_3: tag del BLUE_CAPTAN conditions:blue_captan_tag
+  trash1_12_4: tag del BLUE_ARCHER conditions:blue_archer_tag
+  trash1_12_5: tag del BLUE_WARRIOR conditions:blue_warrior_tag
+  trash1_12_6: tag del BLUE_TANK conditions:blue_tank_tag
+  trash1_12_7: tag del BLUE_WORK conditions:blue_work_tag
+  trash1_12_8: tag del BLUE_MAGE conditions:blue_mage_tag
+  trash1_13: notify Ваша роль была удалена io:title
+
+
+  trash1_c: notify У вас сейчас нет активной роли
+  clear: command clear %player%
+
+  ##########################################################################BLUE_TEAM
+  #####BLUE_KING######
+  obj_blue_king: objective add BLUE_KING
+  blue_ifel_king: if blue_tag cancel_king2 else blue_ifel_king1
+  blue_ifel_king1: if con_blue_king_gp cancel_king else blue_king
+  cancel_king: folder cancel_king_1, obj_blue_king
+  cancel_king_1: notify У команды &9&lСиние&f уже есть Король. Выберите другую роль
+  cancel_king2: notify Вы не можете взять эту роль, так как у вас уже есть другая.
+
+
+  blue_king: folder obj_trash,blue_king_gp,blue_lobby,blue_king_not,blue_king_tag,blu_king_item,blue_king_armor,horn,h_obj,blue_team
+  blue_king_not: "notify Вы теперь 👑 &9&lКороль &f👑 io:title" 
+  blue_king_tag: tag add BLUE_KING
+  blue_king_gp: globalpoint BLUE_KING 1 action:add
+
+  blu_king_item: folder blue_king_item1,blue_king_item2,blue_king_item3,blue_king_item4
+  blue_king_item1: command give %player% minecraft:diamond_sword 1
+  blue_king_item2: command give %player% minecraft:bow 1
+  blue_king_item3: command item replace entity %player% weapon.offhand with minecraft:totem_of_undying
+  blue_king_item4: command give %player% minecraft:arrow 32
+
+  blue_king_armor: folder blue_king_helmet,blue_king_chest,blue_king_legs,blue_king_feets
+  blue_king_helmet: command item replace entity %player% armor.head with minecraft:diamond_helmet
+  blue_king_chest: command item replace entity %player% armor.chest with minecraft:diamond_chestplate
+  blue_king_legs: command item replace entity %player% armor.legs with minecraft:diamond_leggings
+  blue_king_feets: command item replace entity %player% armor.feet with minecraft:diamond_boots
+
+  horn: folder horn_give1,horn_give2,horn_give3
+  horn_give1: give blue_king_rog1
+  horn_give2: give blue_king_rog2
+  horn_give3: give blue_king_rog3
+
+  horn1: folder horn1_eff,horn1_not
+  horn1_not: notify &9🛡&fЗащитить Стены! io:title conditions:blue_tag
+  horn1_eff: runForAll where:blue_tag events:horn1_eff1,horn1_eff2
+  horn1_eff1: effect INCREASE_DAMAGE 5 1
+  horn1_eff2: effect Absorption 20 1
+
+  horn2: folder blue_horn2_eff1,blue_horn2_eff2
+  horn2_not: notify &9⚐&fСобираемся Вместе! io:title conditions:blue_tag
+  blue_horn2_eff1: effect GLOWING 5 1
+  blue_horn2_eff2_1: effect SPEED 5 1
+  blue_horn2_eff2: runForAll where:blue_tag events:blue_horn2_eff2_1,horn2_not
+
+  horn3: folder blue_horn3_eff
+  horn3_not: notify &9🏰&fОбороняем Замок! io:title conditions:blue_tag
+  blue_horn3_eff1: effect resistance 5 1
+  blue_horn3_eff: runForAll where:blue_tag events:blue_horn3_eff1,horn3_not
+
+  h_obj: folder h_obj1,h_obj2,h_obj3
+  h_obj1: objective add blue_horn1
+  h_obj2: objective add blue_horn2
+  h_obj3: objective add blue_horn3
+  ###########################
+
+  ##BLUE_GUARDIAN##
+  obj_blue_guardian: objective add BLUE_GUARDIAN
+  blue_ifel_guardian: if blue_tag cancel_king2 else blue_ifel_guardian1
+  blue_ifel_guardian1: if con_blue_guardian_gp cancel_guardian else blue_ifel_guardian2
+  blue_ifel_guardian2: if blue_guardian_tag cancel_guardian2 else blue_guardian
+  cancel_guardian: folder cancel_guardian_1,obj_blue_guardian
+  cancel_guardian_1: notify У команды &9&lСиние&f уже есть Стражи. Выберите другую роль
+  cancel_guardian2: notify Вы уже Страж
+
+  blue_guardian: folder obj_trash,blue_lobby,blue_guardian_not,blue_guardian_gp,blue_guardian_tag,blue_guardian_armor,blu_guardian_item,blue_team
+  blue_guardian_not: "notify Вы теперь 🛡🪓 &9&lСТРАЖ &f🛡🪓 io:title"
+  blue_guardian_tag: tag add BLUE_GUARDIAN
+  blue_guardian_gp: globalpoint BLUE_GUARDIAN 1 action:add
+
+  blue_guardian_armor: folder blue_guardian_helmet,blue_guardian_chest,blue_guardian_legs,blue_guardian_feets
+  blue_guardian_helmet: command item replace entity %player% armor.head with minecraft:diamond_helmet
+  blue_guardian_chest: command item replace entity %player% armor.chest with minecraft:diamond_chestplate
+  blue_guardian_legs: command item replace entity %player% armor.legs with minecraft:diamond_leggings
+  blue_guardian_feets: command item replace entity %player% armor.feet with minecraft:diamond_boots
+  
+  blu_guardian_item: folder blue_guardian_item1,blue_guardian_item2
+  blue_guardian_item1: command give %player% minecraft:diamond_sword 1
+  blue_guardian_item2: command item replace entity %player% weapon.offhand with minecraft:shield
+  ##############################################################################################
+
+  ##BLUE_CAPTAN##
+  obj_blue_captan: objective add BLUE_CAPTAN
+  blue_ifel_capta: if blue_tag cancel_king2 else blue_ifel_captan1
+  blue_ifel_captan1: if con_blue_captan_gp cancel_captan else blue_ifel_captan2
+  blue_ifel_captan2: if blue_captan_tag cancel_captan2 else blue_captan
+  cancel_captan: folder cancel_captan_1,obj_blue_captan
+  cancel_captan_1: notify У команды &9&lСиние&f уже есть Капитаны. Выберите другую роль
+  cancel_captan2: notify Вы уже Капитан
+
+  blue_captan: folder obj_trash,blue_team,blue_lobby,blue_captan_not,blue_captan_gp,blue_captan_tag,blue_captan_armor,blue_captan_item
+  blue_captan_not: "notify Вы теперь ⚔ &9&lКАПИТАН &f⚔ io:title"
+  blue_captan_gp: globalpoint BLUE_CAPTAN 1 action:add
+  blue_captan_tag: tag add BLUE_CAPTAN
+
+  blue_captan_armor: folder blue_captan_helmet,blue_captan_chest,blue_captan_legs,blue_captan_feets
+  blue_captan_helmet: command item replace entity %player% armor.head with minecraft:iron_helmet
+  blue_captan_chest: command item replace entity %player% armor.chest with minecraft:diamond_chestplate
+  blue_captan_legs: command item replace entity %player% armor.legs with minecraft:diamond_leggings
+  blue_captan_feets: command item replace entity %player% armor.feet with minecraft:iron_boots
+
+  blue_captan_item: folder blue_captan_item1,blue_captan_item2,blue_captan_item3,blue_c_h_obj1,blue_c_h_obj2
+  blue_captan_item1: give blue_captan_weap
+  blue_captan_item2: give blue_captan_horn1
+  blue_captan_item3: give blue_captan_horn2
+
+  blue_c_h_obj1: objective add blue_c_horn1
+  blue_c_h_obj2: objective add blue_c_horn2
+
+  blue_captan_horn1: folder blue_captan_horn1_eff
+  blue_captan_horn1_not: notify &9Капитан &fвосстанавливает ваш боевой дух io:subtitle
+  blue_captan_horn1_eff: party 10 blue_tag blue_captan_horn1_eff_1,blue_captan_horn1_not
+  blue_captan_horn1_eff_1: hunger give 10
+
+  blue_captan_horn2: folder blue_captan_horn2_eff
+  blue_captan_horn2_not: notify &9Капитан &fдарует вам силу io:subtitle
+  blue_captan_horn2_eff: party 10 blue_tag blue_captan_horn2_eff_1,blue_captan_horn2_not
+  blue_captan_horn2_eff_1: effect INCREASE_DAMAGE 5 1
+  #######################
+
+  ##BLUE_ARCHER##
+  obj_blue_archer: objective add BLUE_ARCHER
+  blue_ifel_archer: if blue_tag cancel_king2 else blue_ifel_archer1
+  blue_ifel_archer1: if con_blue_archer_gp cancel_archer else blue_ifel_archer2
+  blue_ifel_archer2: if blue_archer_tag cancel_archer2 else blue_archer
+  cancel_archer: folder cancel_archer_1,obj_blue_archer
+  cancel_archer_1: notify У команды &9&lСиние&f уже есть Лучники. Выберите другую роль
+  cancel_archer2: notify Вы уже Лучник
+
+  blue_archer: folder obj_trash,blue_team,blue_lobby,blue_archer_not,blue_archer_gp,blue_archer_tag,blue_archer_armor,blue_archer_item
+  blue_archer_not: "notify Вы теперь 🏹 &9&lЛУЧНИК &f🏹 io:title"
+  blue_archer_gp: globalpoint BLUE_ARCHER 1 action:add
+  blue_archer_tag: tag add BLUE_ARCHER
+
+  blue_archer_armor: folder blue_archer_helmet,blue_archer_chest,blue_archer_legs,blue_archer_feets
+  blue_archer_helmet: command item replace entity %player% armor.head with minecraft:leather_helmet
+  blue_archer_chest: command item replace entity %player% armor.chest with minecraft:iron_chestplate
+  blue_archer_legs: command item replace entity %player% armor.legs with minecraft:iron_leggings
+  blue_archer_feets: command item replace entity %player% armor.feet with minecraft:leather_boots
+
+  blue_archer_item: folder blue_archer_item1,blue_archer_item2
+  blue_archer_item1: command give %player% minecraft:bow 1
+  blue_archer_item2: command give %player% minecraft:arrow 64
+  ######################################################
+
+  ##BLUE_WARRIOR##
+  obj_blue_warrior: objective add BLUE_WARRIOR
+  blue_ifel_warrior: if blue_tag cancel_king2 else blue_ifel_warrior1
+  blue_ifel_warrior1: if con_blue_warrior_gp cancel_warrior else blue_ifel_warrior2
+  blue_ifel_warrior2: if blue_warrior_tag cancel_warrior2 else blue_warrior
+  cancel_warrior: folder cancel_warrior_1,obj_blue_warrior
+  cancel_warrior_1: notify У команды &9&lСиние&f уже есть Воины. Выберите другую роль
+  cancel_warrior2: notify Вы уже Воин
+
+  blue_warrior: folder obj_trash,blue_team,blue_lobby,blue_warrior_not,blue_warrior_gp,blue_warrior_tag,blue_warrior_armor,blue_warrior_item
+  blue_warrior_not: "notify Вы теперь 🗡 &9&lВОИН &f🗡 io:title"
+  blue_warrior_gp: globalpoint BLUE_WARRIOR 1 action:add
+  blue_warrior_tag: tag add BLUE_WARRIOR
+
+  blue_warrior_armor: folder blue_warrior_helmet,blue_warrior_chest,blue_warrior_legs,blue_warrior_feets
+  blue_warrior_helmet: command item replace entity %player% armor.head with minecraft:iron_helmet
+  blue_warrior_chest: command item replace entity %player% armor.chest with minecraft:iron_chestplate
+  blue_warrior_legs: command item replace entity %player% armor.legs with minecraft:iron_leggings
+  blue_warrior_feets: command item replace entity %player% armor.feet with minecraft:iron_boots
+
+  blue_warrior_item: folder blue_warrior_item1
+  blue_warrior_item1: command give %player% minecraft:iron_sword 1
+  #####################################################
+
+  ##BLUE_TANK##
+  obj_blue_tank: objective add BLUE_TANK
+  blue_ifel_tank: if blue_tag cancel_king2 else blue_ifel_tank1
+  blue_ifel_tank1: if con_blue_tank_gp cancel_tank else blue_ifel_tank2
+  blue_ifel_tank2: if blue_warrior_tag cancel_tank2 else blue_tank
+  cancel_tank: folder cancel_tank,obj_blue_tank
+  cancel_tank_1: notify У команды &9&lСиние&f уже есть Танки. Выберите другую роль
+  cancel_tank2: notify Вы уже Танк
+
+  blue_tank: folder obj_trash,blue_team,blue_lobby,blue_tank_not,blue_tank_gp,blue_tank_tag,blue_tank_armor,blue_tank_item
+  blue_tank_not: "notify Вы теперь 🛡 &9&lТАНК &f🛡 io:title"
+  blue_tank_gp: globalpoint BLUE_TANK 1 action:add
+  blue_tank_tag: tag add BLUE_TANK
+
+  blue_tank_armor: folder blue_tank_helmet,blue_tank_chest,blue_tank_legs,blue_tank_feets
+  blue_tank_helmet: command item replace entity %player% armor.head with minecraft:iron_helmet
+  blue_tank_chest: command item replace entity %player% armor.chest with minecraft:iron_chestplate
+  blue_tank_legs: command item replace entity %player% armor.legs with minecraft:iron_leggings
+  blue_tank_feets: command item replace entity %player% armor.feet with minecraft:iron_boots
+
+  blue_tank_item: folder blue_tank_item1,blue_tank_item2
+  blue_tank_item1: command give %player% minecraft:iron_sword 1
+  blue_tank_item2: command item replace entity %player% weapon.offhand with minecraft:shield
+  #####################################################
+
+  ##BLUE_WORK##
+  obj_blue_work: objective add BLUE_WORK
+  blue_ifel_work: if blue_tag cancel_king2 else blue_ifel_work1
+  blue_ifel_work1: if con_blue_work_gp cancel_work else blue_ifel_work2
+  blue_ifel_work2: if blue_work_tag cancel_work2 else blue_work
+  cancel_work: folder cancel_work_1,obj_blue_work
+  cancel_work_1: notify У команды &9&lСиние&f уже есть Работяги. Выберите другую роль
+  cancel_work2: notify Вы уже Работяга
+
+  blue_work: folder obj_trash,blue_team,blue_lobby,blue_work_not,blue_work_gp,blue_work_tag,blue_work_armor,blue_work_item
+  blue_work_not: "notify Вы теперь 🛠 &9&lРАБОТЯГА &f🛠 io:title"
+  blue_work_gp: globalpoint BLUE_WORK 1 action:add
+  blue_work_tag: tag add BLUE_WORK
+
+  blue_work_armor: folder blue_work_helmet,blue_work_chest,blue_work_legs,blue_work_feets
+  blue_work_helmet: command item replace entity %player% armor.head with minecraft:leather_helmet
+  blue_work_chest: command item replace entity %player% armor.chest with minecraft:leather_chestplate
+  blue_work_legs: command item replace entity %player% armor.legs with minecraft:leather_leggings
+  blue_work_feets: command item replace entity %player% armor.feet with minecraft:leather_boots
+
+  blue_work_item: folder blue_work_item1,blue_work_item2
+  blue_work_item1: command give %player% minecraft:wooden_sword 1
+  blue_work_item2: command give %player% minecraft:wooden_axe 1
+  ####################################################
+
+  ##BLUE_MAGE##
+  obj_blue_mage: objective add BLUE_MAGE
+  blue_ifel_mage: if blue_tag cancel_king2 else blue_ifel_mage1
+  blue_ifel_mage1: if con_blue_mage_gp cancel_mage else blue_ifel_mage2
+  blue_ifel_mage2: if blue_mage_tag cancel_mage2 else blue_mage
+  cancel_mage: folder cancel_mage,obj_blue_mage
+  cancel_mage_1: notify У команды &9&lСиние&f уже есть Маги. Выберите другую роль
+  cancel_mage2: notify Вы уже Маг
+
+  blue_mage: folder obj_trash,blue_team,blue_lobby,blue_mage_not,blue_mage_gp,blue_mage_tag,blue_mage_armor,blue_mage_item
+  blue_mage_not: "notify Вы теперь 🔮 &9&lМАГ &f🔮 io:title"
+  blue_mage_gp: globalpoint BLUE_MAGE 1 action:add
+  blue_mage_tag: tag add BLUE_MAGE
+
+  blue_mage_armor: folder blue_mage_helmet,blue_mage_chest,blue_mage_legs,blue_mage_feets
+  blue_mage_helmet: command item replace entity %player% armor.head with minecraft:leather_helmet
+  blue_mage_chest: command item replace entity %player% armor.chest with minecraft:leather_chestplate
+  blue_mage_legs: command item replace entity %player% armor.legs with minecraft:leather_leggings
+  blue_mage_feets: command item replace entity %player% armor.feet with minecraft:leather_boots
+
+  blue_mage_item: folder blue_mage_item1
+  blue_mage_item1: command give %player% minecraft:wooden_sword 1
+  ####################################################
+  ############################################################################################BLUE_TEAM_END
+
+  red_tu: folder red_tu1,red_tu2,red_tu3,red_tu4,red_tu5,red_tu6,red_tu7,red_tu8
+  red_tu1: globalpoint RED_KING 0 action:set 
+  red_tu2: globalpoint RED_GUARDIAN -1 action:add conditions:red_guardian_tag
+  red_tu3: globalpoint RED_CAPTAN -1 action:add conditions:red_captan_tag
+  red_tu4: globalpoint RED_ARCHER -1 action:add conditions:red_archer_tag
+  red_tu5: globalpoint RED_WARRIOR -1 action:add conditions:red_warrior_tag
+  red_tu6: globalpoint RED_TANK -1 action:add conditions:red_tank_tag
+  red_tu7: globalpoint RED_WORK -1 action:add conditions:red_work_tag
+  red_tu8: globalpoint RED_MAGE -1 action:add conditions:red_mage_tag
+  
+  red_obj_trash: objective add red_trash
+  red_trash1: if red_tag red_trash1_1 else red_trash1_c
+
+  obj_red: folder obj_red_king,obj_red_guardian,obj_red_captan,obj_red_archer,obj_red_warrior,obj_red_tank,obj_red_work,obj_red_mage
+
+  red_trash1_1: folder clear,red_tu,red_trash1_12,del_red_team,obj_red,red_trash1_13,red_trash1_12_5,red_trash1_12_6,red_trash1_12_7,red_trash1_12_8
+  red_trash1_12: folder red_trash1_12_1,red_trash1_12_2,red_trash1_12_3,red_trash1_12_4
+  red_trash1_12_1: tag del RED_KING conditions:red_king_tag
+  red_trash1_12_2: tag del RED_GUARDIAN conditions:red_guardian_tag
+  red_trash1_12_3: tag del RED_CAPTAN conditions:red_captan_tag
+  red_trash1_12_4: tag del RED_ARCHER conditions:red_archer_tag
+  red_trash1_12_5: tag del RED_WARRIOR conditions:red_warrior_tag
+  red_trash1_12_6: tag del RED_TANK conditions:red_tank_tag
+  red_trash1_12_7: tag del RED_WORK conditions:red_work_tag
+  red_trash1_12_8: tag del RED_MAGE conditions:red_mage_tag
+  red_trash1_13: notify Ваша роль была удалена io:title
+
+
+  red_trash1_c: notify У вас сейчас нет активной роли
+
+  ##########################################################################RED_TEAM
+  #####RED_KING######
+  obj_red_king: objective add RED_KING
+  red_ifel_king: if red_tag cancel_red_king2 else red_ifel_king1
+  red_ifel_king1: if con_red_king_gp cancel_red_king else red_king
+  cancel_red_king: folder cancel_red_king_1, obj_red_king
+  cancel_red_king_1: notify У команды &c&lКрасные&f уже есть Король. Выберите другую роль
+  cancel_red_king2: notify Вы не можете взять эту роль, так как у вас уже есть другая.
+
+
+  red_king: folder obj_trash,red_king_gp,red_lobby,red_king_not,red_king_tag,red_king_item,red_king_armor,red_horn,red_h_obj,red_team
+  red_king_not: "notify Вы теперь 👑 &c&lКороль &f👑 io:title" 
+  red_king_tag: tag add RED_KING
+  red_king_gp: globalpoint RED_KING 1 action:add
+
+  red_king_item: folder red_king_item1,red_king_item2,red_king_item3,red_king_item4
+  red_king_item1: command give %player% minecraft:diamond_sword 1
+  red_king_item2: command give %player% minecraft:bow 1
+  red_king_item3: command item replace entity %player% weapon.offhand with minecraft:totem_of_undying
+  red_king_item4: command give %player% minecraft:arrow 32
+
+  red_king_armor: folder red_king_helmet,red_king_chest,red_king_legs,red_king_feets
+  red_king_helmet: command item replace entity %player% armor.head with minecraft:diamond_helmet
+  red_king_chest: command item replace entity %player% armor.chest with minecraft:diamond_chestplate
+  red_king_legs: command item replace entity %player% armor.legs with minecraft:diamond_leggings
+  red_king_feets: command item replace entity %player% armor.feet with minecraft:diamond_boots
+
+  red_horn: folder red_horn_give1,red_horn_give2,red_horn_give3
+  red_horn_give1: give red_king_rog1
+  red_horn_give2: give red_king_rog2
+  red_horn_give3: give red_king_rog3
+
+  red_horn1: folder red_horn1_eff
+  red_horn1_not: notify &c🔥&fЗахватить Стены! io:title conditions:red_team,!blue_team
+  red_horn1_eff: runForAll where:red_tag events:red_horn1_eff1,red_horn1_eff2,red_horn1_not
+  red_horn1_eff1: effect INCREASE_DAMAGE 5 1
+  red_horn1_eff2: effect Absorption 20 1
+
+  red_horn2: folder red_horn2_eff2,red_horn2_eff1
+  red_horn2_eff1: effect GLOWING 5 1
+  red_horn2_eff2_1: effect SPEED 5 1
+  red_horn2_eff2: runForAll where:red_tag events:red_horn2_eff2_1,red_horn2_not
+  red_horn2_not: notify &c⚐&fСобираемся Вместе! io:title conditions:red_team,!blue_team
+
+  red_horn3: folder red_horn3_eff
+  red_horn3_not: notify &fАтакуем Замок! io:title conditions:red_team,!blue_team
+  red_horn3_eff1: effect resistance 5 1
+  red_horn3_eff: runForAll where:red_tag events:red_horn3_eff1,red_horn3_not
+
+  red_h_obj: folder red_h_obj1,red_h_obj2,red_h_obj3
+  red_h_obj1: objective add red_horn1
+  red_h_obj2: objective add red_horn2
+  red_h_obj3: objective add red_horn3
+  ###########################
+
+  ##RED_GUARDIAN##
+  obj_red_guardian: objective add RED_GUARDIAN
+  red_ifel_guardian: if red_tag cancel_red_king2 else red_ifel_guardian1
+  red_ifel_guardian1: if con_red_guardian_gp cancel_red_guardian else red_ifel_guardian2
+  red_ifel_guardian2: if red_guardian_tag cancel_red_guardian2 else red_guardian
+  cancel_red_guardian: folder cancel_red_guardian_1,obj_red_guardian
+  cancel_red_guardian_1: notify У команды &c&lКрасные&f уже есть Стражи. Выберите другую роль
+  cancel_red_guardian2: notify Вы уже Страж
+
+  red_guardian: folder obj_trash,red_lobby,red_guardian_not,red_guardian_gp,red_guardian_tag,red_guardian_armor,red_guardian_item,red_team
+  red_guardian_not: "notify Вы теперь 🛡🪓 &c&lСТРАЖ &f🛡🪓 io:title"
+  red_guardian_tag: tag add RED_GUARDIAN
+  red_guardian_gp: globalpoint RED_GUARDIAN 1 action:add
+
+  red_guardian_armor: folder red_guardian_helmet,red_guardian_chest,red_guardian_legs,red_guardian_feets
+  red_guardian_helmet: command item replace entity %player% armor.head with minecraft:diamond_helmet
+  red_guardian_chest: command item replace entity %player% armor.chest with minecraft:diamond_chestplate
+  red_guardian_legs: command item replace entity %player% armor.legs with minecraft:diamond_leggings
+  red_guardian_feets: command item replace entity %player% armor.feet with minecraft:diamond_boots
+  
+  red_guardian_item: folder red_guardian_item1,red_guardian_item2
+  red_guardian_item1: command give %player% minecraft:diamond_sword 1
+  red_guardian_item2: command item replace entity %player% weapon.offhand with minecraft:shield
+  ##############################################################################################
+
+  ##RED_CAPTAN##
+  obj_red_captan: objective add RED_CAPTAN
+  red_ifel_capta: if red_tag cancel_red_king2 else red_ifel_captan1
+  red_ifel_captan1: if con_red_captan_gp cancel_red_captan else red_ifel_captan2
+  red_ifel_captan2: if red_captan_tag cancel_red_captan2 else red_captan
+  cancel_red_captan: folder cancel_red_captan_1,obj_red_captan
+  cancel_red_captan_1: notify У команды &c&lКрасные&f уже есть Капитаны. Выберите другую роль
+  cancel_red_captan2: notify Вы уже Капитан
+
+  red_captan: folder obj_trash,red_team,red_lobby,red_captan_not,red_captan_gp,red_captan_tag,red_captan_armor,red_captan_item,red_c_h_obj1,red_c_h_obj2
+  red_captan_not: "notify Вы теперь ⚔ &c&lКАПИТАН &f⚔ io:title"
+  red_captan_gp: globalpoint RED_CAPTAN 1 action:add
+  red_captan_tag: tag add RED_CAPTAN
+
+  red_captan_armor: folder red_captan_helmet,red_captan_chest,red_captan_legs,red_captan_feets
+  red_captan_helmet: command item replace entity %player% armor.head with minecraft:iron_helmet
+  red_captan_chest: command item replace entity %player% armor.chest with minecraft:diamond_chestplate
+  red_captan_legs: command item replace entity %player% armor.legs with minecraft:diamond_leggings
+  red_captan_feets: command item replace entity %player% armor.feet with minecraft:iron_boots
+
+  red_captan_item: folder red_captan_item1,red_captan_item2,red_captan_item3
+  red_captan_item1: give red_captan_weap
+  red_captan_item2: give red_captan_horn1
+  red_captan_item3: give red_captan_horn2
+
+  red_captan_horn1: folder red_captan_horn1_eff
+  red_captan_horn1_not: notify &cКапитан &fвосстанавливает ваш боевой дух io:subtitle
+  red_captan_horn1_eff: party 10 red_tag red_captan_horn1_eff_1,red_captan_horn1_not
+  red_captan_horn1_eff_1: hunger give 10
+
+  red_captan_horn2: folder red_captan_horn2_eff
+  red_captan_horn2_not: notify &cКапитан &fвосстанавливает дарует вам силу io:subtitle
+  red_captan_horn2_eff: party 10 red_tag red_captan_horn2_eff_1,red_captan_horn2_not
+  red_captan_horn2_eff_1: effect INCREASE_DAMAGE 5 1
+  
+  red_c_h_obj1: objective add red_c_horn1
+  red_c_h_obj2: objective add red_c_horn2
+  #######################
+
+  ##RED_ARCHER##
+  obj_red_archer: objective add RED_ARCHER
+  red_ifel_archer: if red_tag cancel_red_king2 else red_ifel_archer1
+  red_ifel_archer1: if con_red_archer_gp cancel_red_archer else red_ifel_archer2
+  red_ifel_archer2: if red_archer_tag cancel_red_archer2 else red_archer
+  cancel_red_archer: folder cancel_red_archer_1,obj_red_archer
+  cancel_red_archer_1: notify У команды &c&lКрасные&f уже есть Лучники. Выберите другую роль
+  cancel_red_archer2: notify Вы уже Лучник
+
+  red_archer: folder obj_trash,red_team,red_lobby,red_archer_not,red_archer_gp,red_archer_tag,red_archer_armor,red_archer_item
+  red_archer_not: "notify Вы теперь 🏹 &c&lЛУЧНИК &f🏹 io:title"
+  red_archer_gp: globalpoint RED_ARCHER 1 action:add
+  red_archer_tag: tag add RED_ARCHER
+
+  red_archer_armor: folder red_archer_helmet,red_archer_chest,red_archer_legs,red_archer_feets
+  red_archer_helmet: command item replace entity %player% armor.head with minecraft:leather_helmet
+  red_archer_chest: command item replace entity %player% armor.chest with minecraft:iron_chestplate
+  red_archer_legs: command item replace entity %player% armor.legs with minecraft:iron_leggings
+  red_archer_feets: command item replace entity %player% armor.feet with minecraft:leather_boots
+
+  red_archer_item: folder red_archer_item1,red_archer_item2
+  red_archer_item1: command give %player% minecraft:bow 1
+  red_archer_item2: command give %player% minecraft:arrow 64
+  ######################################################
+
+  ##RED_WARRIOR##
+  obj_red_warrior: objective add RED_WARRIOR
+  red_ifel_warrior: if red_tag cancel_red_king2 else red_ifel_warrior1
+  red_ifel_warrior1: if con_red_warrior_gp cancel_red_warrior else red_ifel_warrior2
+  red_ifel_warrior2: if red_warrior_tag cancel_red_warrior2 else red_warrior
+  cancel_red_warrior: folder cancel_red_warrior_1,obj_red_warrior
+  cancel_red_warrior_1: notify У команды &c&lКрасные&f уже есть Воины. Выберите другую роль
+  cancel_red_warrior2: notify Вы уже Воин
+
+  red_warrior: folder obj_trash,red_team,red_lobby,red_warrior_not,red_warrior_gp,red_warrior_tag,red_warrior_armor,red_warrior_item
+  red_warrior_not: "notify Вы теперь 🗡 &c&lВОИН &f🗡 io:title"
+  red_warrior_gp: globalpoint RED_WARRIOR 1 action:add
+  red_warrior_tag: tag add RED_WARRIOR
+
+  red_warrior_armor: folder red_warrior_helmet,red_warrior_chest,red_warrior_legs,red_warrior_feets
+  red_warrior_helmet: command item replace entity %player% armor.head with minecraft:iron_helmet
+  red_warrior_chest: command item replace entity %player% armor.chest with minecraft:iron_chestplate
+  red_warrior_legs: command item replace entity %player% armor.legs with minecraft:iron_leggings
+  red_warrior_feets: command item replace entity %player% armor.feet with minecraft:iron_boots
+
+  red_warrior_item: folder red_warrior_item1
+  red_warrior_item1: command give %player% minecraft:iron_sword 1
+  #####################################################
+
+  ##RED_TANK##
+  obj_red_tank: objective add RED_TANK
+  red_ifel_tank: if red_tag cancel_red_king2 else red_ifel_tank1
+  red_ifel_tank1: if con_red_tank_gp cancel_red_tank else red_ifel_tank2
+  red_ifel_tank2: if red_tank_tag cancel_red_tank2 else red_tank
+  cancel_red_tank: folder cancel_red_tank_1,obj_red_tank
+  cancel_red_tank_1: notify У команды &c&lКрасные&f уже есть Танки. Выберите другую роль
+  cancel_red_tank2: notify Вы уже Танк
+
+  red_tank: folder obj_trash,red_team,red_lobby,red_tank_not,red_tank_gp,red_tank_tag,red_tank_armor,red_tank_item
+  red_tank_not: "notify Вы теперь 🛡 &c&lТАНК &f🛡 io:title"
+  red_tank_gp: globalpoint RED_TANK 1 action:add
+  red_tank_tag: tag add RED_TANK
+
+  red_tank_armor: folder red_tank_helmet,red_tank_chest,red_tank_legs,red_tank_feets
+  red_tank_helmet: command item replace entity %player% armor.head with minecraft:iron_helmet
+  red_tank_chest: command item replace entity %player% armor.chest with minecraft:iron_chestplate
+  red_tank_legs: command item replace entity %player% armor.legs with minecraft:iron_leggings
+  red_tank_feets: command item replace entity %player% armor.feet with minecraft:iron_boots
+
+  red_tank_item: folder red_tank_item1,red_tank_item2
+  red_tank_item1: command give %player% minecraft:iron_sword 1
+  red_tank_item2: command item replace entity %player% weapon.offhand with minecraft:shield
+  #####################################################
+
+  ##RED_WORK##
+  obj_red_work: objective add RED_WORK
+  red_ifel_work: if red_tag cancel_red_king2 else red_ifel_work1
+  red_ifel_work1: if con_red_work_gp cancel_red_work else red_ifel_work2
+  red_ifel_work2: if red_work_tag cancel_red_work2 else red_work
+  cancel_red_work: folder cancel_red_work_1,obj_red_work
+  cancel_red_work_1: notify У команды &c&lКрасные&f уже есть Работяги. Выберите другую роль
+  cancel_red_work2: notify Вы уже Работяга
+
+  red_work: folder obj_trash,red_team,red_lobby,red_work_not,red_work_gp,red_work_tag,red_work_armor,red_work_item
+  red_work_not: "notify Вы теперь 🛠 &c&lРАБОТЯГА &f🛠 io:title"
+  red_work_gp: globalpoint RED_WORK 1 action:add
+  red_work_tag: tag add RED_WORK
+
+  red_work_armor: folder red_work_helmet,red_work_chest,red_work_legs,red_work_feets
+  red_work_helmet: command item replace entity %player% armor.head with minecraft:leather_helmet
+  red_work_chest: command item replace entity %player% armor.chest with minecraft:leather_chestplate
+  red_work_legs: command item replace entity %player% armor.legs with minecraft:leather_leggings
+  red_work_feets: command item replace entity %player% armor.feet with minecraft:leather_boots
+
+  red_work_item: folder red_work_item1,red_work_item2
+  red_work_item1: command give %player% minecraft:wooden_sword 1
+  red_work_item2: command give %player% minecraft:wooden_axe 1
+  ####################################################
+
+  ##RED_MAGE##
+  obj_red_mage: objective add RED_MAGE
+  red_ifel_mage: if red_tag cancel_red_king2 else red_ifel_mage1
+  red_ifel_mage1: if con_red_mage_gp cancel_red_mage else red_ifel_mage2
+  red_ifel_mage2: if red_mage_tag cancel_red_mage2 else red_mage
+  cancel_red_mage: folder cancel_red_mage_1,obj_red_mage
+  cancel_red_mage_1: notify У команды &c&lКрасные&f уже есть Маги. Выберите другую роль
+  cancel_red_mage2: notify Вы уже Маг
+
+  red_mage: folder obj_trash,red_team,red_lobby,red_mage_not,red_mage_gp,red_mage_tag,red_mage_armor,red_mage_item
+  red_mage_not: "notify Вы теперь 🔮 &c&lМАГ &f🔮 io:title"
+  red_mage_gp: globalpoint RED_MAGE 1 action:add
+  red_mage_tag: tag add RED_MAGE
+
+  red_mage_armor: folder red_mage_helmet,red_mage_chest,red_mage_legs,red_mage_feets
+  red_mage_helmet: command item replace entity %player% armor.head with minecraft:leather_helmet
+  red_mage_chest: command item replace entity %player% armor.chest with minecraft:leather_chestplate
+  red_mage_legs: command item replace entity %player% armor.legs with minecraft:leather_leggings
+  red_mage_feets: command item replace entity %player% armor.feet with minecraft:leather_boots
+
+  red_mage_item: folder red_mage_item1
+  red_mage_item1: command give %player% minecraft:wooden_sword 1
+  ####################################################
+  ############################################################################################RED_TEAM_END
+    
+  ifStart1: if start start1 else start_none
+  ifStart2: if start start2 else start_none
+  ifStart3: if start start3 else start_none
+  ifStart4: if start start4 else start_none
+  ifStart5: if start start5 else start_none
+  start1: folder start1_1,ifStart2 delay:1
+  start1_1: notify &lНачало через 5... io:actionbar
+  start2: folder start2_1,ifStart3 delay:1
+  start2_1: notify &lНачало через 4... io:actionbar
+  start3: folder start3_1,ifStart4 delay:1
+  start3_1: notify &lНачало через 3... io:actionbar
+  start4: folder start4_1,ifStart5 delay:1
+  start4_1: notify &lНачало через 2... io:actionbar
+  start5: folder start5_1,start6 delay:1 period:1
+  start5_1: notify &lНачало через 1... io:actionbar
+  start6: folder start6_1,stgp,start
+  start6_1: notify Игра Начинается io:title
+  start_none: notify Недостаточно игроков для начала игры io:actionbar
+
+  stgp: globalpoint game_start 1 action:add
+
+  st_obj: objective add start
+  #################

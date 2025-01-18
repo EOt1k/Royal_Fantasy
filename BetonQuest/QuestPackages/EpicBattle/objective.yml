@@ -1,0 +1,7 @@
+objectives:
+  loc1: npcinteract 0 conditions:loc1 events:tp1,gp_players,logout,obj_start global persistent
+  logout: logout events:player_world_del,gp_players_del,tp0
+  start_game: location -4;-59;18;world 20  events:start_game
+  ran_x: variable global
+  ran_z: variable global
+  ran_y: variable global

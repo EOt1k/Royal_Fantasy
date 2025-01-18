@@ -1,0 +1,130 @@
+objectives:
+  br: block OAK_LOG -1 events:test
+  test: npcinteract 35 interaction:any events:test1 global
+  ###ОСАДА####
+  red_npc: npcinteract 12 interaction:any events:red_lobby,del_blue_obj,red_obj_trash,obj_red
+  blue_npc: npcinteract 11 interaction:any events:obj_blue,obj_trash,blue_lobby
+
+  leave: logout events:trash1
+  logout: logout events:flag_give
+
+  start_game: location -112;74;-169;world 200 events:test,start
+
+  start: delay 1 ticks events:ifStart1,st_obj conditions:!stgp 
+
+  lead: location -205;73;5;world 2 events:lead1 conditions:sneak
+
+  first: npcinteract 22 interaction:any events:tp1,red_obj,blue_obj
+  loc1: location -225;72;-106;world 4 events:first global
+  ################################################################################BLUE_TEAM
+  ##BLUE_CAPTAN##
+  BLUE_CAPTAN: npcinteract 32 interaction:any events:blue_ifel_capta
+
+  blue_c_horn1: action right any events:blue_captan_horn1,blue_c_h_obj1 conditions:blue_c_horn1,blue_captan_tag
+  blue_c_horn2: action right any events:blue_captan_horn2,blue_c_h_obj2 conditions:blue_c_horn2,blue_captan_tag
+  ##################
+
+  blue_trash: npcinteract 21 interaction:any events:trash1
+  ##BLUE_KING##
+  BLUE_KING: npcinteract 13 interaction:any events:blue_ifel_king
+  blue_horn1: action right any events:horn1,h_obj1 conditions:horn1,blue_king_tag
+  blue_horn2: action right any events:horn2,h_obj2 conditions:horn2,blue_king_tag
+  blue_horn3: action right any events:horn3,h_obj3 conditions:horn3,blue_king_tag
+  ##########################################################################
+
+  ##BLUE_GUARDIAN##
+  BLUE_GUARDIAN: npcinteract 14 interaction:any events:blue_ifel_guardian
+  ##################
+
+  ##BLUE_ARCHER##
+  BLUE_ARCHER: npcinteract 16 interaction:any events:blue_ifel_archer
+  ###################
+
+  ##BLUE_WARRIOR##
+  BLUE_WARRIOR: npcinteract 17 interaction:any events:blue_ifel_warrior
+  ###################
+
+  ##BLUE_TANK##
+  BLUE_TANK: npcinteract 18 interaction:any events:blue_ifel_tank
+  ###################
+
+  ##BLUE_WORK##
+  BLUE_WORK: npcinteract 19 interaction:any events:blue_ifel_work
+  ###################
+
+  ##BLUE_MAGE##
+  BLUE_MAGE: npcinteract 20 interaction:any events:blue_ifel_mage
+  ###################
+  ###################################################################################BLUE_TEAM_END
+
+  ################################################################################RED_TEAM
+  ##RED_CAPTAN##
+  RED_CAPTAN: npcinteract 25 interaction:any events:red_ifel_capta
+
+  red_c_horn1: action right any events:red_captan_horn1,red_c_h_obj1 conditions:red_c_horn1,red_captan_tag
+  red_c_horn2: action right any events:red_captan_horn2,red_c_h_obj2 conditions:red_c_horn2,red_captan_tag
+  ##################
+
+  red_trash: npcinteract 31 interaction:any events:red_trash1,red_obj_trash
+  ##RED_KING##
+  RED_KING: npcinteract 23 interaction:any events:red_ifel_king
+  red_horn1: action right any events:red_horn1,red_h_obj1 conditions:red_horn1,red_king_tag
+  red_horn2: action right any events:red_horn2,red_h_obj2 conditions:red_horn2,red_king_tag
+  red_horn3: action right any events:red_horn3,red_h_obj3 conditions:red_horn3,red_king_tag
+  ##########################################################################
+
+  ##RED_GUARDIAN##
+  RED_GUARDIAN: npcinteract 24 interaction:any events:red_ifel_guardian
+  ##################
+
+  ##RED_ARCHER##
+  RED_ARCHER: npcinteract 26 interaction:any events:red_ifel_archer
+  ###################
+
+  ##RED_WARRIOR##
+  RED_WARRIOR: npcinteract 27 interaction:any events:red_ifel_warrior
+  ###################
+
+  ##RED_TANK##
+  RED_TANK: npcinteract 28 interaction:any events:red_ifel_tank
+  ###################
+
+  ##RED_WORK##
+  RED_WORK: npcinteract 33 interaction:any events:red_ifel_work
+  ###################
+
+  ##RED_MAGE##
+  RED_MAGE: npcinteract 34 interaction:any events:red_ifel_mage
+  ###################
+  ###################################################################################RED_TEAM_END
+
+  ##CRASH_WALL##
+  break1: block OAK_FENCE -1 events:break,br,hp_gp2
+  def_vall: variable
+  loc: location -209;73;1;world 5 events:hp,test,lc persistent
+
+  ###Flag###
+  flag: location -222;73;21;world 2 events:ifFlag,flag_ret_obj conditions:blue_flag,red_team
+  flag_return: die events:flag_paste,flag_ret_not,flag_take
+  ############
+
+  ###DEATH###
+  d1: die respawn:-206;71;73;world events:p_death,d_obj,d1_obj_loc conditions:p_death1
+  d1_loc: location -206;70;67;world 3 events:red_start,blue_start
+
+  d2: die respawn:-217;70;74;world events:p_death,d_obj,d2_obj_loc conditions:p_death2
+  d2_loc: location -217;69;65;world 3 events:red_start,blue_start
+
+  d3: die respawn:-229;69;74;world events:p_death,d_obj,d3_obj_loc conditions:p_death3
+  d3_loc: location -229;68;59;world 3 events:red_start,blue_start
+  ###########
+
+  ###Timer
+  timer: location -188;73;6;world 3 events:tim 
+  #######
+
+  ###MAGE###
+  coord1: variable persistent global
+  staff: action right any events:ef conditions:sneak,staff
+  heal_zone: location %globalpoint.cord_x.amount%;%globalpoint.cord_y.amount%;%globalpoint.cord_z.amount%;world 3 events:regen
+  cd: delay 30 seconds events:test

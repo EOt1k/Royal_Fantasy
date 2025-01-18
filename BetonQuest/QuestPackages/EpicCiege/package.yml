@@ -1,0 +1,44 @@
+npcs:
+
+
+player_hider:
+  empty_hider: #No one can see any players inside a secret room. /setworldspawn -211 71 -107
+   source_player: 
+
+effectlib:
+  heal:
+    class: Circle
+    particle: dragon_breath
+    particles: 20
+    iterations: 50
+    period: 0.5
+    radius: 0.4
+
+  beton:
+    class: HelixEffect
+    iterations: 100
+    particle: smoke
+    helixes: 5
+    circles: 20
+    grow: 3
+    radius: 30
+
+
+holograms:
+  Team:
+    lines:
+    - '&lВыберите сторону'
+    location: -211;74;-106.5;world
+
+  WALL:
+    lines:
+    - '&l&b%math.calc:({globalpoint.wall.amount}/400*100)%%'
+    location: 15;123;-189.5;world
+
+  Leader1:
+    lines:
+    - '&lПоднять лестницу'
+    - '[Удерживайте SHIFT]'
+    location: -205;75;5.5;world
+    conditions: red_work_tag
+

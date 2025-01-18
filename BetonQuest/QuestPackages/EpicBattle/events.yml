@@ -1,0 +1,32 @@
+events:
+  tp0: teleport -2;-59;-17;world
+  tp1: teleport -4;-59;18;world
+  tpbattle: opsudo mv tp EpicBattle1
+  rtp: opsudo rtp
+
+  rtps: folder gen_cord0,noti4,ifel 
+  noti4: notify Ваши координаты %objective.ran_x.x% %objective.ran_y.y% %objective.ran_z.z%
+  testtp: teleport %objective.ran_x.x%;%objective.ran_y.y%;%objective.ran_z.z%;EpicBattle1
+  gen_cord: folder gen_cord0,noti4,ifel delay:10 ticks
+  gen_cord0: folder p_x1,p_z1,p_y1
+  p_x1: variable ran_x x %randomnumber.whole.-50~50%
+  p_z1: variable ran_z z %randomnumber.whole.-50~50%
+  p_y1: variable ran_y y %randomnumber.whole.60~100%
+  ifel: if safe testtp else gen_cord
+
+   
+  gp_players: globalpoint players_wait 1 action:add
+  gp_players_del: globalpoint players_wait -1 action:add
+  world_gen_finish: globalpoint world_finish 1 action:add conditions:world_finish
+  world_gen_finish_del: globalpoint world_finish -1 action:add 
+  player_world: globalpoint player_world 1 action:add 
+  player_world_del: globalpoint player_world -1 action:add conditions:!battle
+
+  logout: objective add logout
+  obj_start: objective add start_game
+
+  start_game: folder world_gen,world_gen_finish,gp_players_del,player_world period:3
+  world_gen: opsudo mvc EpicBattle1 normal conditions:world_finish
+  world_del: folder world_del1,world_del2,world_gen_finish_del,tp0,gp_players_del conditions:players_world0
+  world_del1: opsudo mv delete EpicBattle1
+  world_del2: opsudo mv confirm

@@ -1,0 +1,164 @@
+conditions:
+  sneak: sneak
+  loca: location -112;74;-169;world 200
+  #in_Lobby: or in_Lobby0,in_Lobby1,in_Lobby2,in_Lobby3
+  #in_Lobby0: region lobby0
+  #in_Lobby1: region lobby1
+  #in_Lobby2: region lobby2
+  #in_Lobby3: region lobby3
+  stage1: numbercompare %globalpoint.wall.amount% <= 90
+  stage2: numbercompare %globalpoint.wall.amount% <= 80
+  stage3: numbercompare %globalpoint.wall.amount% <= 70
+  lead1: testforblock -205;73;5;world LADDER
+  lead2: testforblock -205;74;5;world LADDER
+  lead3: testforblock -205;75;5;world LADDER
+  lead4: testforblock -205;76;5;world LADDER
+
+  check1_1: testforblock 14;121;-186;world OAK_FENCE
+  check1_2: testforblock 14;122;-186;world OAK_FENCE
+  check1_3: testforblock 14;123;-186;world OAK_FENCE
+  check1_4: testforblock 14;124;-186;world OAK_FENCE
+  check1_5: testforblock 14;125;-186;world OAK_FENCE
+
+  check2_1: testforblock 14;121;-187;world OAK_FENCE
+  check2_2: testforblock 14;122;-187;world OAK_FENCE
+  check2_3: testforblock 14;123;-187;world OAK_FENCE
+  check2_4: testforblock 14;124;-187;world OAK_FENCE
+  check2_5: testforblock 14;125;-187;world OAK_FENCE
+
+  check3_1: testforblock 14;121;-188;world OAK_FENCE
+  check3_2: testforblock 14;122;-188;world OAK_FENCE
+  check3_3: testforblock 14;123;-188;world OAK_FENCE
+  check3_4: testforblock 14;124;-188;world OAK_FENCE
+  check3_5: testforblock 14;125;-188;world OAK_FENCE
+
+  check4_1: testforblock 14;121;-189;world OAK_FENCE
+  check4_2: testforblock 14;122;-189;world OAK_FENCE
+  check4_3: testforblock 14;123;-189;world OAK_FENCE
+  check4_4: testforblock 14;124;-189;world OAK_FENCE
+  check4_5: testforblock 14;125;-189;world OAK_FENCE
+
+  check5_1: testforblock 14;121;-190;world OAK_FENCE
+  check5_2: testforblock 14;122;-190;world OAK_FENCE
+  check5_3: testforblock 14;123;-190;world OAK_FENCE
+  check5_4: testforblock 14;124;-190;world OAK_FENCE
+  check5_5: testforblock 14;125;-190;world OAK_FENCE
+
+  check6_1: testforblock 14;121;-191;world OAK_FENCE
+  check6_2: testforblock 14;122;-191;world OAK_FENCE
+  check6_3: testforblock 14;123;-191;world OAK_FENCE
+  check6_4: testforblock 14;124;-191;world OAK_FENCE
+  check6_5: testforblock 14;125;-191;world OAK_FENCE
+
+  check7_1: testforblock 14;121;-192;world OAK_FENCE
+  check7_2: testforblock 14;122;-192;world OAK_FENCE
+  check7_3: testforblock 14;123;-192;world OAK_FENCE
+  check7_4: testforblock 14;124;-192;world OAK_FENCE
+  check7_5: testforblock 14;125;-192;world OAK_FENCE
+
+  check8_1: testforblock 14;121;-193;world OAK_FENCE
+  check8_2: testforblock 14;122;-193;world OAK_FENCE
+  check8_3: testforblock 14;123;-193;world OAK_FENCE
+  check8_4: testforblock 14;124;-193;world OAK_FENCE
+  check8_5: testforblock 14;125;-193;world OAK_FENCE
+  
+  check9_1: testforblock 14;121;-194;world OAK_FENCE
+  check9_2: testforblock 14;122;-194;world OAK_FENCE
+  check9_3: testforblock 14;123;-194;world OAK_FENCE
+  check9_4: testforblock 14;124;-194;world OAK_FENCE
+  check9_5: testforblock 14;125;-194;world OAK_FENCE
+
+  check10_1: testforblock 14;121;-195;world OAK_FENCE
+  check10_2: testforblock 14;122;-195;world OAK_FENCE
+  check10_3: testforblock 14;123;-195;world OAK_FENCE
+  check10_4: testforblock 14;124;-195;world OAK_FENCE
+  check10_5: testforblock 14;125;-195;world OAK_FENCE
+
+  horn1: hand blue_king_rog1
+  horn2: hand blue_king_rog2
+  horn3: hand blue_king_rog3
+
+  red_horn1: hand red_king_rog1
+  red_horn2: hand red_king_rog2
+  red_horn3: hand red_king_rog3
+
+  red_c_horn1: hand red_captan_horn1
+  red_c_horn2: hand red_captan_horn2
+
+  blue_c_horn1: hand blue_captan_horn1
+  blue_c_horn2: hand blue_captan_horn2
+
+  start: and blue_start,red_start
+  blue_start: and blue_start1,blue_start2,blue_start3,blue_start4,blue_start5,blue_start6,blue_start7,blue_start8
+  blue_start1: globalpoint BLUE_KING 1
+  blue_start2: globalpoint BLUE_GUARDIAN 1
+  blue_start3: globalpoint BLUE_MAGE 1
+  blue_start4: globalpoint BLUE_ARCHER 1
+  blue_start5: globalpoint BLUE_WARRIOR 1
+  blue_start6: globalpoint BLUE_TANK 1
+  blue_start7: globalpoint BLUE_WORK 1
+  blue_start8: globalpoint BLUE_CAPTAN 1
+
+  red_start: and red_start1,red_start2,red_start3,red_start4,red_start5,red_start6,red_start7,red_start8
+  red_start1: globalpoint RED_KING 1
+  red_start2: globalpoint RED_GUARDIAN 1
+  red_start3: globalpoint RED_MAGE 1
+  red_start4: globalpoint RED_ARCHER 1
+  red_start5: globalpoint RED_WARRIOR 1
+  red_start6: globalpoint RED_TANK 1
+  red_start7: globalpoint RED_WORK 1
+  red_start8: globalpoint RED_CAPTAN 1
+
+  stgp: globalpoint game_start 1
+  
+  con_blue_king_gp: globalpoint BLUE_KING 1
+  con_blue_guardian_gp: globalpoint BLUE_GUARDIAN 3
+  con_blue_mage_gp: globalpoint BLUE_MAGE 3
+  con_blue_archer_gp: globalpoint BLUE_ARCHER 5
+  con_blue_warrior_gp: globalpoint BLUE_WARRIOR 5
+  con_blue_tank_gp: globalpoint BLUE_TANK 5
+  con_blue_work_gp: globalpoint BLUE_WORK 10
+  con_blue_captan_gp: globalpoint BLUE_CAPTAN 2
+  blue_guardian_tag: tag BLUE_GUARDIAN
+  blue_captan_tag: tag BLUE_CAPTAN
+  blue_archer_tag: tag BLUE_ARCHER
+  blue_warrior_tag: tag BLUE_WARRIOR
+  blue_tank_tag: tag BLUE_TANK
+  blue_work_tag: tag BLUE_WORK
+  blue_mage_tag: tag BLUE_MAGE
+  blue_tag: or blue_king_tag,blue_guardian_tag,blue_captan_tag,blue_archer_tag,blue_warrior_tag,blue_tank_tag,blue_work_tag,blue_mage_tag
+  blue_king_tag: tag BLUE_KING
+  blue_team: tag blue_team
+
+  con_red_king_gp: globalpoint RED_KING 1
+  con_red_guardian_gp: globalpoint RED_GUARDIAN 3
+  con_red_mage_gp: globalpoint RED_MAGE 3
+  con_red_archer_gp: globalpoint RED_ARCHER 5
+  con_red_warrior_gp: globalpoint RED_WARRIOR 5
+  con_red_tank_gp: globalpoint RED_TANK 5
+  con_red_work_gp: globalpoint RED_WORK 10
+  con_red_captan_gp: globalpoint RED_CAPTAN 2
+  red_guardian_tag: tag RED_GUARDIAN
+  red_captan_tag: tag RED_CAPTAN
+  red_archer_tag: tag RED_ARCHER
+  red_warrior_tag: tag RED_WARRIOR
+  red_tank_tag: tag RED_TANK
+  red_work_tag: tag RED_WORK
+  red_mage_tag: tag RED_MAGE
+  red_tag: or red_king_tag,red_guardian_tag,red_captan_tag,red_archer_tag,red_warrior_tag,red_tank_tag,red_work_tag,red_mage_tag
+  red_king_tag: tag RED_KING
+  red_team: tag red_team
+
+  flag: location -222;73;21;world 2
+  heal_zone: location %globalpoint.cord_x.amount%;%globalpoint.cord_y.amount%;%globalpoint.cord_z.amount%;world 3
+  blue_flag: testforblock -222;73;21;world minecraft:blue_banner #minecraft:blue_banner
+
+  p_death1: numbercompare %point.death.amount% <= 3
+  p_death2: numbercompare %point.death.amount% >= 4
+  p_death3: numbercompare %point.death.amount% >= 7
+
+  time_end: numbercompare %globalpoint.TIMER.amount% <= 0
+
+  staff: hand staff
+
+  effect: effect REGENERATION

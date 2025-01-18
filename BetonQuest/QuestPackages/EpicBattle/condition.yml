@@ -1,0 +1,29 @@
+conditions:
+  tp1_p: point tp1 1
+  tp2_p: point tp1 2 
+  loc1: location -2;-59;-12;world 7
+  players: numbercompare %globalpoint.players_wait.amount% = 1
+  world_finish: numbercompare %globalpoint.world_finish.amount% < 1
+  battle: world EpicBattle1
+  players_world0: numbercompare %globalpoint.player_world.amount% = 0
+
+  safe: and check,test
+  check: or check1,check2,check4,check5,check6,check7,check8,check9,check10
+  check1: testforblock %objective.ran_x.x%;%math.calc:objective.ran_y.y-1%;%objective.ran_z.z%;EpicBattle1 minecraft:stone
+  check2: testforblock %objective.ran_x.x%;%math.calc:objective.ran_y.y-1%;%objective.ran_z.z%;EpicBattle1 minecraft:dirt
+  check4: testforblock %objective.ran_x.x%;%math.calc:objective.ran_y.y-1%;%objective.ran_z.z%;EpicBattle1 minecraft:grass_block
+  check5: testforblock %objective.ran_x.x%;%math.calc:objective.ran_y.y-3%;%objective.ran_z.z%;EpicBattle1 minecraft:grass_block
+  check6: testforblock %objective.ran_x.x%;%math.calc:objective.ran_y.y-1%;%objective.ran_z.z%;EpicBattle1 minecraft:GRAVEL
+  check7: testforblock %objective.ran_x.x%;%math.calc:objective.ran_y.y-1%;%objective.ran_z.z%;EpicBattle1 minecraft:RED_SAND
+  check8: testforblock %objective.ran_x.x%;%math.calc:objective.ran_y.y-1%;%objective.ran_z.z%;EpicBattle1 minecraft:SAND
+  check9: testforblock %objective.ran_x.x%;%math.calc:objective.ran_y.y-2%;%objective.ran_z.z%;EpicBattle1 minecraft:stone
+  check10: testforblock %objective.ran_x.x%;%math.calc:objective.ran_y.y-3%;%objective.ran_z.z%;EpicBattle1 minecraft:dirt
+  
+  test: and !test1,!test2,!test3,!test4,!test5,!test6
+  test1: testforblock %objective.ran_x.x%;%objective.ran_y.y%;%objective.ran_z.z%;EpicBattle1 minecraft:stone
+  test2: testforblock %objective.ran_x.x%;%objective.ran_y.y%;%objective.ran_z.z%;EpicBattle1 minecraft:dirt
+  test3: testforblock %objective.ran_x.x%;%objective.ran_y.y%;%objective.ran_z.z%;EpicBattle1 minecraft:grass_block
+  test4: testforblock %objective.ran_x.x%;%objective.ran_y.y%;%objective.ran_z.z%;EpicBattle1 minecraft:lava
+  test5: testforblock %objective.ran_x.x%;%objective.ran_y.y%;%objective.ran_z.z%;EpicBattle1 minecraft:water
+  test6: testforblock %objective.ran_x.x%;%math.calc:objective.ran_y.y-3%;%objective.ran_z.z%;EpicBattle1 minecraft:water
+

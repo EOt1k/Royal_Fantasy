@@ -1,0 +1,19 @@
+items:
+  # #BLUE_KING##
+  blue_king_rog1: GOAT_HORN name:&fСигнал_&9&lЗащитить_стены durability:0
+  blue_king_rog2: GOAT_HORN name:&fСигнал_"&9&lСобраться_Вместе" durability:0
+  blue_king_rog3: GOAT_HORN name:&fСигнал_"&9&lОбороняем_Замок" durability:0
+  blue_captan_horn1: GOAT_HORN name:&f&lРог_Боевого_Духа durability:0
+  blue_captan_horn2: GOAT_HORN name:&f&lРог_Силы durability:0
+  flag: BLUE_BANNER durability:0 name:Флаг_&9Синей_Команды
+  blue_captan_weap: TRIDENT durability:0 name:&FКопье_Капитана enchants:LOYALTY:3
+    flags:HIDE_ENCHANTS
+  
+  red_king_rog1: GOAT_HORN name:&fСигнал_&c&lЗахватить_стены durability:0
+  red_king_rog2: GOAT_HORN name:&fСигнал_"&c&lСобраться_Вместе" durability:0
+  red_king_rog3: GOAT_HORN name:&fСигнал_"&c&lАтакуем_Замок" durability:0
+  red_captan_horn1: GOAT_HORN name:&f&lРог_Боевого_Духа durability:0
+  red_captan_horn2: GOAT_HORN name:&f&lРог_Силы durability:0
+  red_captan_weap: TRIDENT durability:0 name:&FКопье_Капитана enchants:LOYALTY:3 flags:HIDE_ENCHANTS
+  staff: WOODEN_SWORD durability:0 name:Палка_Хуялка 
+
